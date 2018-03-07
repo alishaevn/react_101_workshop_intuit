@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 
 class Title extends React.Component {
   render() {
@@ -12,7 +12,9 @@ class SubTitle extends React.Component {
   }
 }
 
-export class Header extends React.Component {
+
+
+export class Header extends Component {
   render() {
     return (
       <div>
