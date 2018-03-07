@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import LineChart from "react-linechart";
 
 import {data} from "../data";
 import Price from './Price';
@@ -16,11 +17,23 @@ export default class Portfolio extends Component {
 
   render() {
 
-    const prices = data.map((dataPoint, index) => {
+    const priceLine = {
+      color: "red",
+      points: []
+    };
+
+    const priceData = [];
+
+    const prices = data.map(dataPoint => {
       const price = dataPoint.ticker.price;
       const time = dataPoint.timestamp;
-      return <Price key={`${index}-${time}`} price={price} time={time} />
-    })
+      priceLine.points.push({
+        x: time,
+        y: price
+      });
+      return <Price price={price} time={time} />;
+    });
+    priceData.push(priceLine);
 
     return (
       <div>
@@ -38,6 +51,7 @@ export default class Portfolio extends Component {
           startingPrice={data[data.length - 1].ticker.price}
         />
         {prices}
+        <LineChart width={700} height={400} data={priceData} />
       </div>
     );
 
