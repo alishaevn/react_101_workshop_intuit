@@ -1,8 +1,15 @@
 import React, {Component} from "react";
+
 import {data} from "../data";
 import Price from './Price';
+import ProfitLoss from './ProfitLoss';
 
 export default class Portfolio extends Component {
+  
+  state = {
+    numBitcoins: 4
+  };
+
   render() {
 
     const prices = data.map((dataPoint, index) => {
@@ -13,6 +20,11 @@ export default class Portfolio extends Component {
 
     return (
       <div>
+        <ProfitLoss
+          numBitcoins={this.state.numBitcoins}
+          price={data[0].ticker.price}
+          startingPrice={data[data.length - 1].ticker.price}
+        />
         {prices}
       </div>
     );
