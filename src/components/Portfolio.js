@@ -11,6 +11,14 @@ export default class Portfolio extends Component {
     numBitcoins: 4
   };
 
+  componentDidMount() {
+    console.log("Portfolio component mounted");
+  }
+
+  componentDidUpdate() {
+    console.log("Portofolio component updated");
+  }
+
   handleChange = e => {
     this.setState({ numBitcoins: e.target.value });
   };
