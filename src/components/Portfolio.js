@@ -8,11 +8,33 @@ import ProfitLoss from './ProfitLoss';
 export default class Portfolio extends Component {
   
   state = {
-    numBitcoins: 4
+    numBitcoins: 4,
+    data:[],
+    startingPrice: 0
   };
 
   componentDidMount() {
-    console.log("Portfolio component mounted");
+    fetch("https://api.cryptonator.com/api/ticker/btc-usd")
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        this.setState({
+          data: this.state.data.concat([data]),
+          startingPrice: data.ticker.price
+        });
+      });
+    setInterval(() => {
+      fetch("https://api.cryptonator.com/api/ticker/btc-usd")
+        .then(res => {
+          return res.json();
+        })
+        .then(data => {
+          this.setState({
+            data: this.state.data.concat([data])
+          });
+        });
+    }, 60000);
   }
 
   componentDidUpdate() {
