@@ -1,5 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
+import Header from './components/Header'
 
 const styles = {
   fontFamily: "sans-serif",
@@ -9,10 +10,7 @@ const styles = {
 class App extends React.Component {
   render() {
     return (
-      <div style={styles}>
-        <h1>San Diego JS</h1>
-        <h2>Start editing to see some magic happen {"\u2728"}</h2>
-      </div>
+      <Header />
     );
   }
 }
