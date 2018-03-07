@@ -10,6 +10,10 @@ export default class Portfolio extends Component {
     numBitcoins: 4
   };
 
+  handleChange = e => {
+    this.setState({ numBitcoins: e.target.value });
+  };
+
   render() {
 
     const prices = data.map((dataPoint, index) => {
@@ -20,6 +24,14 @@ export default class Portfolio extends Component {
 
     return (
       <div>
+        <div>
+          Bitcoins owned:{" "}
+          <input
+            type="text"
+            value={this.state.numBitcoins}
+            onChange={this.handleChange}
+          />
+        </div>
         <ProfitLoss
           numBitcoins={this.state.numBitcoins}
           price={data[0].ticker.price}
